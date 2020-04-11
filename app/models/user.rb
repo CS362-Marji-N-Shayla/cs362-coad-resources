@@ -1,3 +1,4 @@
+# MS - Extends ApplicationRecord. Holds the contact info and associations for each single user of the app
 class User < ApplicationRecord
 
   enum role: [:admin, :organization]

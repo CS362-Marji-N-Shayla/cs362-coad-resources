@@ -1,3 +1,4 @@
+# MS - Extends ApplicationRecord. Contains tickets for an area
 class Region < ApplicationRecord
 
   has_many :tickets

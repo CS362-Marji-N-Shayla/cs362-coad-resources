@@ -1,3 +1,4 @@
+# MS - Extends ApplicationRecord. Gives categories to tickets to sort and search by
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations

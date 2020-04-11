@@ -1,3 +1,4 @@
+# MS - Extends ApplicationRecord. Holds the info about the contents and associations of each ticket for a needed or donated resource
 class Ticket < ApplicationRecord
 
   belongs_to :region
