@@ -6,4 +6,12 @@ RSpec.describe Ticket, type: :model do
         Ticket.new
     end
 
+    #{id}
+
+    it 'has a string representation that is the name' do
+        #???
+        # r = Ticket.new(Ticket: '')
+        # expect(r.to_s).to eq('FAKE')
+    end
+
 end
