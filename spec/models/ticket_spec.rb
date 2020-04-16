@@ -9,9 +9,8 @@ RSpec.describe Ticket, type: :model do
     #{id}
 
     it 'has a string representation that is the name' do
-        #???
-        # r = Ticket.new(Ticket: '')
-        # expect(r.to_s).to eq('FAKE')
+        r = Ticket.new(Ticket: 'FAKE')
+        expect(r.to_s).to eq('Ticket #FAKE')
     end
 
 end
