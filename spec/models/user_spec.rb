@@ -9,6 +9,13 @@ RSpec.describe User, type: :model do
 
     it 'exists' do
         User.new
-    end
+	end
 
+end
+
+describe "relationships" do
+	it "belongs to organization" do
+		user = User.new
+		expect(user).to belong_to(:organization)
+	end
 end

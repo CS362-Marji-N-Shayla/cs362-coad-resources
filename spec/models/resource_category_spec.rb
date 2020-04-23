@@ -2,13 +2,23 @@ require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
 
-    it 'exists' do
-        ResourceCategory.new
+    it 'has a string representation that is the name' do
+        resource_category = ResourceCategory.new(name: 'FAKE')
+        expect(resource_category.to_s).to eq('FAKE')
     end
 
-    it 'has a string representation that is the name' do
-        r = Region.new(name: 'FAKE')
-        expect(r.to_s).to eq('FAKE')
+    describe "relationships" do
+        it "has and belongs to many organizations" do
+            resource_category = ResourceCategory.new
+            expect(resource_category).to have_and_belong_to_many(:organizations)
+        end
+    
+        it "has many tickets" do
+            resource_category = ResourceCategory.new
+            expect(resource_category).to have_many(:tickets)
+        end
+        
     end
 
 end
+
