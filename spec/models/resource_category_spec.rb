@@ -9,7 +9,9 @@ RSpec.describe ResourceCategory, type: :model do
         expect(resource_cat.to_s).to eq(name: expected)
     end
 
-    describe "relationships" do        
+    describe "relationships" do
+        let(:resource_category) { ResourceCategory.new }
+
         it "has and belongs to many organizations" do
             expect(resource_category).to have_and_belong_to_many(:organizations)
         end
