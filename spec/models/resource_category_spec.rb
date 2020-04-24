@@ -4,8 +4,9 @@ RSpec.describe ResourceCategory, type: :model do
     let(:resource_category) { ResourceCategory.new }
 
     it 'has a string representation that is the name' do
+        expected_name = 'FAKE'
         resource_cat = ResourceCategory.new(name: 'FAKE')
-        expect(resource_cat.to_s).to eq('FAKE')
+        expect(resource_cat.to_s).to eq(expected_name)
     end
 
     describe "relationships" do
