@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
-    let(:resource_category) { RescourceCategory.new }
+    let(:resource_category) { ResourceCategory.new }
 
     it 'has a string representation that is the name' do
-        expected = 'FAKE'
+        expected_name = 'FAKE'
         resource_cat = ResourceCategory.new(name: 'FAKE')
-        expect(resource_cat.to_s).to eq(name: expected)
+        expect(resource_cat.to_s).to eq(expected_name)
     end
 
     describe "relationships" do
