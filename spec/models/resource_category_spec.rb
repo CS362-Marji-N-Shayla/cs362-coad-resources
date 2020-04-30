@@ -9,10 +9,10 @@ RSpec.describe ResourceCategory, type: :model do
         expect(resource_cat.to_s).to eq(expected_name)
     end
 
-    it 'can determine if a record is inactive' do
-        active_resource_cat = ResourceCategory.new(active: true,name: 'FAKE')
-        expect(resource_cat.inactive?).to be_falsy
-    end
+    # it 'can determine if a record is inactive' do
+    #     active_resource_cat = ResourceCategory.new(active: true,name: 'FAKE')
+    #     expect(resource_cat.inactive?).to be_falsy
+    # end
 
     describe "relationships" do
       it "has and belongs to many organizations" do
