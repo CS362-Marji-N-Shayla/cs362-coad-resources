@@ -46,4 +46,10 @@ RSpec.describe Organization, type: :model do
     end
   end
 
+  describe "attributes" do
+        it "responds to a name" do
+            expect(organization).to respond_to(:name)
+        end
+    end
+
 end
