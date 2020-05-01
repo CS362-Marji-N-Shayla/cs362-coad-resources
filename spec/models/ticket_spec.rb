@@ -35,6 +35,18 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
+  describe "attributes" do
+        it "responds to a name" do
+            expect(ticket).to respond_to(:name)
+        end
+        it "responds to a description" do
+            expect(ticket).to respond_to(:description)
+        end
+        it "responds to a phone" do
+            expect(ticket).to respond_to(:phone)
+        end
+    end
+
 end
 
 
