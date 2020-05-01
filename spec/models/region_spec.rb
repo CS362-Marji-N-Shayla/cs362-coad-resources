@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Region, type: :model do
-	let(:region) { build(:region) }
-	
-    it 'has a string representation that is the name' do
-        region = Region.new(name: 'FAKE')
-        expect(region.to_s).to eq('FAKE')
+
+    let(:region) { FactoryBot.build(:region) }
+
+    describe "#to_s" do
+        it 'has a string representation that is the name' do
+            expect(region.to_s).to eq('FAKE')
+        end
     end
 
     describe "validations" do
