@@ -40,6 +40,9 @@ RSpec.describe ResourceCategory, type: :model do
         it "responds to a name" do
             expect(resource_category).to respond_to(:name)
         end
+        it "responds to active" do
+            expect(resource_category).to respond_to(:active)
+        end
     end
 
     describe "#active" do
