@@ -50,6 +50,39 @@ RSpec.describe Organization, type: :model do
         it "responds to a name" do
             expect(organization).to respond_to(:name)
         end
+        it "responds to a status" do
+            expect(organization).to respond_to(:status)
+        end
+        it "responds to a phone" do
+            expect(organization).to respond_to(:phone)
+        end
+        it "responds to a email" do
+            expect(organization).to respond_to(:email)
+        end
+        it "responds to a description" do
+            expect(organization).to respond_to(:description)
+        end
+        it "responds to a rejection_reason" do
+            expect(organization).to respond_to(:rejection_reason)
+        end
+        it "responds to a liability_insurance" do
+            expect(organization).to respond_to(:liability_insurance)
+        end
+        it "responds to a primary_name" do
+            expect(organization).to respond_to(:primary_name)
+        end
+        it "responds to a secondary_name" do
+            expect(organization).to respond_to(:secondary_name)
+        end
+        it "responds to a secondary_phone" do
+            expect(organization).to respond_to(:secondary_phone)
+        end
+        it "responds to a title" do
+            expect(organization).to respond_to(:title)
+        end
+        it "responds to a transportation" do
+            expect(organization).to respond_to(:transportation)
+        end
     end
 
 end
