@@ -13,7 +13,16 @@ RSpec.describe User, type: :model do
 		it "belongs to organization" do
 			expect(user).to belong_to(:organization)
 		end
-	end
+  end
+  
+  describe "attributes" do
+    it "responds to an email" do
+        expect(user).to respond_to(:email)
+    end
+    it "responds to a role" do
+      expect(user).to respond_to(:role)
+  end
+end
 
   describe "validations" do
     it "validates email" do
