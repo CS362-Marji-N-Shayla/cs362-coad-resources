@@ -36,6 +36,12 @@ RSpec.describe ResourceCategory, type: :model do
         end
     end
 
+    describe "attributes" do
+        it "responds to a name" do
+            expect(resource_category).to respond_to(:name)
+        end
+    end
+
     describe "#active" do
       it "active resource_categories" do
         active_resource_category = ResourceCategory.create(active: true, name: 'FAKEACTIVE')
