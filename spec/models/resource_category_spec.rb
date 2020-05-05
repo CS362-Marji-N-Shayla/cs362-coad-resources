@@ -9,11 +9,6 @@ RSpec.describe ResourceCategory, type: :model do
         expect(resource_cat.to_s).to eq(expected_name)
     end
 
-    # it 'can determine if a record is inactive' do
-    #     active_resource_cat = ResourceCategory.new(active: true,name: 'FAKE')
-    #     expect(resource_cat.inactive?).to be_falsy
-    # end
-
     describe "relationships" do
       it "has and belongs to many organizations" do
           expect(resource_category).to have_and_belong_to_many(:organizations)
@@ -64,6 +59,17 @@ RSpec.describe ResourceCategory, type: :model do
         inactive_resource_categories = ResourceCategory.inactive
         expect(inactive_resource_categories).to include(inactive_resource_category)
         expect(inactive_resource_categories).not_to include(active_resource_category)
+      end
+    end
+
+    describe "#inactive?" do
+      it 'can determine a resource category is inactive' do
+          inactive_resource_cat = ResourceCategory.new(active: false, name: 'FAKE')
+          expect(inactive_resource_cat.inactive?).to be_truthy
+      end
+      it 'can determine a resource category is not inactive' do
+          active_resource_cat = ResourceCategory.new(active: true, name: 'FAKE')
+          expect(active_resource_cat.inactive?).to be_falsey
       end
     end
 
