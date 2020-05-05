@@ -6,13 +6,16 @@ FactoryBot.define do
             closed { false }
             organization_id { nil }
         end
-        region
+        trait :closed do
+            closed { true }
+        end
+        # region
 	end	
 end
 
 # FactoryBot.define do
 #     factory :region do
-#         id { 1 }
+#         id: 1    #??
 #     end
 # end
 

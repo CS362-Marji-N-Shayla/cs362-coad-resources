@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
+  let(:region) { FactoryBot.build(:region)}
 
   it 'has a string representation that is the name' do
       ticket_name = Ticket.new(name: 'FAKE')
@@ -33,9 +34,7 @@ RSpec.describe Ticket, type: :model do
     it 'validates length of description' do
         expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
     end
-    # it 'validates phone number' do
-    #   expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
-    # end
+
   end
 
   describe 'attributes' do
@@ -51,22 +50,19 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe '#open' do
-    it 'open tickets' do
+    it 'is open' do
       open_ticket = Ticket.new(closed: false, organization_id: nil)
-      closed_ticket = Ticket.new(closed: true)
-      open_tickets = Ticket.open
-      expect(open_tickets).to include(open_ticket)
-      expect(open_tickets).not_to include(closed_ticket)
+      expect(open_ticket).to be_open
+      expect(open_ticket).to_not be_closed
     end
+
   end
 
   describe '#closed' do
-    it 'closed tickets' do
-      closed_ticket = Ticket.new(name: "Fake" phone: "555-555-5555" region_id: Region.new closed: true)
-      open_ticket = Ticket.new(closed: false, organization: nil)
-      closed_tickets = Ticket.closed
-      expect(closed_tickets).to include(closed_ticket)
-      expect(closed_tickets).not_to include(open_ticket)
+    it 'is closed' do
+      closed_ticket = Ticket.new(closed: true)
+      expect(closed_ticket).to be_closed
+      expect(closed_ticket).not_to be_open
     end
   end
 
