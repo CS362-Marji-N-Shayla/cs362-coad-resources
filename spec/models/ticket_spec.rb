@@ -51,18 +51,18 @@ RSpec.describe Ticket, type: :model do
 
   describe '#open' do
     it 'is open' do
-      open_ticket = Ticket.new(closed: false, organization_id: nil)
-      expect(open_ticket).to be_open
-      expect(open_ticket).to_not be_closed
+      ticket.closed = false
+      expect(ticket).to be_open
+      expect(ticket).to_not be_closed
     end
 
   end
 
   describe '#closed' do
     it 'is closed' do
-      closed_ticket = Ticket.new(closed: true)
-      expect(closed_ticket).to be_closed
-      expect(closed_ticket).not_to be_open
+      ticket.closed = true
+      expect(ticket).to be_closed
+      expect(ticket).not_to be_open
     end
   end
 
