@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
-  let(:ticket) { Ticket.new }
+  let(:ticket) { FactoryBot.build(:ticket) }
 
   it 'has a string representation that is the name' do
       ticket_name = Ticket.new(name: 'FAKE')
@@ -33,39 +33,40 @@ RSpec.describe Ticket, type: :model do
     it 'validates length of description' do
         expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
     end
+    # it 'validates phone number' do
+    #   expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
+    # end
   end
 
   describe 'attributes' do
-        it 'responds to a name' do
-            expect(ticket).to respond_to(:name)
-        end
-        it 'responds to a description' do
-            expect(ticket).to respond_to(:description)
-        end
-        it 'responds to a phone' do
-            expect(ticket).to respond_to(:phone)
-        end
+    it 'responds to a name' do
+        expect(ticket).to respond_to(:name)
     end
-
-    describe "#active" do
-    it "active resource_categories" do
-      active_resource_category = ResourceCategory.create(active: true, name: 'FAKEACTIVE')
-      inactive_resource_category = ResourceCategory.create(active: false, name: 'FAKEINACTIVE')
-
-      active_resource_categories = ResourceCategory.active
-      expect(active_resource_categories).to include(active_resource_category)
-      expect(active_resource_categories).not_to include(inactive_resource_category)
+    it 'responds to a description' do
+        expect(ticket).to respond_to(:description)
+    end
+    it 'responds to a phone' do
+        expect(ticket).to respond_to(:phone)
     end
   end
 
-  describe "#inactive" do
-    it "inactive resource_categories" do
-      active_resource_category = ResourceCategory.create(active: true, name: 'FAKEACTIVE')
-      inactive_resource_category = ResourceCategory.create(active: false, name: 'FAKEINACTIVE')
+  describe '#open' do
+    it 'open tickets' do
+      open_ticket = Ticket.new(closed: false, organization_id: nil)
+      closed_ticket = Ticket.new(closed: true)
+      open_tickets = Ticket.open
+      expect(open_tickets).to include(open_ticket)
+      expect(open_tickets).not_to include(closed_ticket)
+    end
+  end
 
-      inactive_resource_categories = ResourceCategory.inactive
-      expect(inactive_resource_categories).to include(inactive_resource_category)
-      expect(inactive_resource_categories).not_to include(active_resource_category)
+  describe '#closed' do
+    it 'closed tickets' do
+      closed_ticket = Ticket.new(name: "Fake" phone: "555-555-5555" region_id: Region.new closed: true)
+      open_ticket = Ticket.new(closed: false, organization: nil)
+      closed_tickets = Ticket.closed
+      expect(closed_tickets).to include(closed_ticket)
+      expect(closed_tickets).not_to include(open_ticket)
     end
   end
 
