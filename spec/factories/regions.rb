@@ -1,9 +1,13 @@
 FactoryBot.define do 
 	factory :region do
-		name { 'FAKE' }
-
-		trait :unspecified do
-			name { 'Unspecified'}
+		sequence :name do |n|
+			"Name#{n}"
 		end
+		sequence :region_id do |n|
+			"#{n}"
+		end
+		# trait :unspecified do
+		# 	name { 'Unspecified'}
+		# end
 	end	
 end

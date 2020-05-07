@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
   let(:region) { FactoryBot.build(:region)}
+  let(:resource_category) { FactoryBot.build(:resource_category)}
+
 
   it 'has a string representation that is the name' do
       ticket_name = Ticket.new(name: 'FAKE')
@@ -33,6 +35,11 @@ RSpec.describe Ticket, type: :model do
     end
     it 'validates length of description' do
         expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
+    end
+    it 'validates phone number' do
+      ticket.region_id = region.region_id
+      ticket.resource_category_id = resource_category.resource_category_id
+      expect(ticket).to be_valid
     end
 
   end
