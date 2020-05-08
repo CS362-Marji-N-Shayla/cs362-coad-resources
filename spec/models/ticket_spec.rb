@@ -75,6 +75,15 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
+  describe '#all_organization' do
+  it 'is all organizations' do
+    ticket.all_organization = true
+    expect(ticket).to be_closed
+    expect(ticket).not_to be_open
+    expect(ticket).organization_id.not_to be_invalid
+  end
+end
+
 end
 
 
