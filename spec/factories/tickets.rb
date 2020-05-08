@@ -9,6 +9,10 @@ FactoryBot.define do
         trait :closed do
             closed { true }
         end
+        # trait :all_organization do
+        #     closed { false }
+        #     organization
+        # end
 	end	
 end
 
