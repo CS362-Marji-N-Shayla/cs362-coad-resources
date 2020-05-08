@@ -27,7 +27,7 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'validations' do
-    it "validates name" do
+    it "validates presence of name" do
       expect(ticket).to validate_presence_of(:name)
     end
     it 'validates length of name' do
@@ -36,12 +36,21 @@ RSpec.describe Ticket, type: :model do
     it 'validates length of description' do
         expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
     end
+    it "validates presence of phone" do
+      expect(ticket).to validate_presence_of(:phone)
+    end
     it 'validates phone number' do
       ticket.region = region
       ticket.resource_category = resource_category
       expect(ticket).to be_valid
       ticket.phone = 'INVALID'
       expect(ticket).to be_invalid
+    end
+    it "validates presence of region_id" do
+      expect(ticket).to validate_presence_of(:region_id)
+    end
+    it "validates presence of resource_category_id" do
+      expect(ticket).to validate_presence_of(:resource_category_id)
     end
 
   end
