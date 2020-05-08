@@ -4,6 +4,7 @@ RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
   let(:region) { FactoryBot.create(:region)}
   let(:resource_category) { FactoryBot.create(:resource_category)}
+  let(:organization) { FactoryBot.build(:organization) }
 
 
   it 'has a string representation that is the name' do
@@ -27,7 +28,7 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'validations' do
-    it "validates name" do
+    it "validates presence of name" do
       expect(ticket).to validate_presence_of(:name)
     end
     it 'validates length of name' do
@@ -36,12 +37,21 @@ RSpec.describe Ticket, type: :model do
     it 'validates length of description' do
         expect(ticket).to validate_length_of(:description).is_at_most(1020).on(:create)
     end
+    it "validates presence of phone" do
+      expect(ticket).to validate_presence_of(:phone)
+    end
     it 'validates phone number' do
       ticket.region = region
       ticket.resource_category = resource_category
       expect(ticket).to be_valid
       ticket.phone = 'INVALID'
       expect(ticket).to be_invalid
+    end
+    it "validates presence of region_id" do
+      expect(ticket).to validate_presence_of(:region_id)
+    end
+    it "validates presence of resource_category_id" do
+      expect(ticket).to validate_presence_of(:resource_category_id)
     end
 
   end
@@ -83,6 +93,14 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).organization_id.not_to be_invalid
   end
 end
+
+  describe '#organization' do
+    it 'is all_organization scope' do
+      ticket.closed = false
+      ticket.organization = organization.organization_id
+      expect(ticket).to be_all_organization
+    end
+  end
 
 end
 
