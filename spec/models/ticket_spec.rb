@@ -4,6 +4,7 @@ RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
   let(:region) { FactoryBot.create(:region)}
   let(:resource_category) { FactoryBot.create(:resource_category)}
+  let(:organization) { FactoryBot.build(:organization) }
 
 
   it 'has a string representation that is the name' do
@@ -81,6 +82,14 @@ RSpec.describe Ticket, type: :model do
       ticket.closed = true
       expect(ticket).to be_closed
       expect(ticket).not_to be_open
+    end
+  end
+
+  describe '#organization' do
+    it 'is all_organization scope' do
+      ticket.closed = false
+      ticket.organization = organization.organization_id
+      expect(ticket).to be_all_organization
     end
   end
 
