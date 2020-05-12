@@ -1,6 +1,8 @@
 FactoryBot.define do 
-	factory :ticket do
-		name { 'FAKE' }
+    factory :ticket do
+        sequence :name do |n|
+			"Name#{n}"
+		end
         phone{ '+41 23 456 78 90' }
         trait :open do
             closed { false }
