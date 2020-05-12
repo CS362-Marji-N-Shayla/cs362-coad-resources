@@ -85,14 +85,15 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
-  # describe '#all_organization' do
-  #   it 'is all organizations' do
-  #     ticket.all_organization = true
-  #     expect(ticket).to be_closed
-  #     expect(ticket).not_to be_open
-  #     # expect(organization).to be_valid
-  #   end
-  # end
+  describe '#all_organization' do
+    it 'is all organizations' do
+      ticket.all_organization = true
+      expect(ticket).to be_closed
+      expect(ticket).not_to be_open
+      expect(ticket).to be_with_organization
+      # expect(organization).to be_valid
+    end
+  end
 
   # describe '#organization' do
   #   it 'is organization scope' do
