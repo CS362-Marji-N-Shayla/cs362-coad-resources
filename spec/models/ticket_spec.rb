@@ -86,12 +86,9 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe '#all_organization' do
-    it 'is all organizations' do
-      ticket.all_organization = true
-      expect(ticket).to be_closed
-      expect(ticket).not_to be_open
-      expect(ticket).to be_with_organization
-      # expect(organization).to be_valid
+    it 'returns all open tickets with an organization' do
+      open_ticket_with_org = create(:ticket, :open, :with_organization)
+      expect(Ticket.all_organization).to include(open_ticket_with_org)
     end
   end
 
