@@ -91,6 +91,10 @@ RSpec.describe Ticket, type: :model do
       expect(Ticket.all_organization).to include(open_ticket_with_org)
       closed_ticket_with_org = create(:ticket, :closed, :with_organization)
       expect(Ticket.all_organization).not_to include(closed_ticket_with_org)
+      open_ticket_without_org = create(:ticket, :open)
+      expect(Ticket.all_organization).not_to include(open_ticket_without_org)
+      closed_ticket_without_org = create(:ticket, :closed, :without_org)
+      expect(Ticket.all_organization).not_to include(closed_ticket_without_org)
     end
   end
 
