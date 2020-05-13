@@ -12,4 +12,10 @@ FactoryBot.define do
 		secondary_name{ 'FAKE SECONDARY' }
 		secondary_phone{ '+41 23 456 78 91' }
 	end	
+	trait :approved do
+		status { 'approved' }
+	end
+	trait :rejected do
+		status { 'rejected' }
+	end
 end

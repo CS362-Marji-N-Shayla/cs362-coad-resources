@@ -1,7 +1,20 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Organization, type: :model do
 	let(:organization) { Organization.new }
+
+  describe "relationships" do  
+    it "has many users" do
+      expect(organization).to have_many(:users)
+    end
+    it "has many tickets" do
+      expect(organization).to have_many(:tickets)
+    end
+    it "has and belongs to many resource categories" do
+      expect(organization).to have_and_belong_to_many(:resource_categories)
+    end
+    
+  end   
 
   describe "validations" do
     it "validates email" do
@@ -83,6 +96,36 @@ RSpec.describe Organization, type: :model do
         it "responds to a transportation" do
             expect(organization).to respond_to(:transportation)
         end
+    end
+
+    describe "#to_s" do
+      it 'has a string representation that is the name' do
+          expected = 'FAKE'
+          organization.name = expected
+          expect(organization.to_s).to eq('FAKE')
+      end
+    end
+
+    describe "#approve" do
+      it "updates status to approved" do
+        submitted = create(:organization)
+        expect{ submitted.approve }.to change { submitted.status }
+      end
+      it "doesn't update status if already approved" do
+        approved = create(:organization, :approved)
+        expect{ approved.approve }.to_not change { approved.status }
+      end
+    end
+
+    describe "#reject" do
+      it "updates status to rejected" do
+        submitted = create(:organization)
+        expect{ submitted.reject }.to change { submitted.status }
+      end
+      it "doesn't update status if already rejected" do
+        rejected = create(:organization, :rejected)
+        expect{ rejected.reject }.to_not change { rejected.status }
+      end
     end
 
 end
