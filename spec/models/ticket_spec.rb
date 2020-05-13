@@ -102,16 +102,16 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
-  describe '#closed_organization' do
-    it 'returns all closed tickets with organization' do
-      expect(Ticket.closed_organization).to include(closed_ticket_with_org)
-      expect(Ticket.closed_organization).not_to include(open_ticket_with_org)
-      expect(Ticket.closed_organization).not_to include(open_ticket_without_org)
-      expect(Ticket.closed_organization).not_to include(closed_ticket_without_org)
-    end
-  end
+  # describe '#closed_organization' do
+  #   it 'returns all closed tickets with organization' do
+  #     expect(Ticket.closed_organization).to include(closed_ticket_with_org)
+  #     expect(Ticket.closed_organization).not_to include(open_ticket_with_org)
+  #     expect(Ticket.closed_organization).not_to include(open_ticket_without_org)
+  #     expect(Ticket.closed_organization).not_to include(closed_ticket_without_org)
+  #   end
+  # end
 
-  describe "#open?" do
+  describe '#open?' do
     it 'can determine a ticket is open' do
         expect(open_ticket_with_org.open?).to be_truthy
         expect(open_ticket_without_org.open?).to be_truthy
@@ -120,6 +120,16 @@ RSpec.describe Ticket, type: :model do
     it 'can determine a ticket is not open' do
       expect(closed_ticket_with_org.open?).to be_falsey
       expect(closed_ticket_without_org.open?).to be_falsey
+    end
+  end
+
+  describe '#captured?' do
+    it 'ticket is not captured by default' do
+      expect(ticket).to_not be_captured
+    end
+
+    it 'ticket with organization is captured' do
+      expect(closed_ticket_with_org).to be_captured
     end
   end
 end
