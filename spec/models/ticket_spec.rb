@@ -2,6 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
+  let(:open_ticket_with_org) { create(:ticket, :open, :with_organization) }
+  let(:closed_ticket_with_org) { create(:ticket, :closed, :with_organization) }
+  let(:open_ticket_without_org) { create(:ticket, :open, :without_org) }
+  let(:closed_ticket_without_org) {create(:ticket, :closed, :without_org)}
+
+
+
+
   let(:region) { FactoryBot.create(:region)}
   let(:resource_category) { FactoryBot.create(:resource_category)}
   let(:organization) { FactoryBot.create(:organization) }
@@ -87,33 +95,33 @@ RSpec.describe Ticket, type: :model do
 
   describe '#all_organization' do
     it 'returns all open tickets with an organization' do
-      open_ticket_with_org = create(:ticket, :open, :with_organization)
       expect(Ticket.all_organization).to include(open_ticket_with_org)
-      closed_ticket_with_org = create(:ticket, :closed, :with_organization)
       expect(Ticket.all_organization).not_to include(closed_ticket_with_org)
-      open_ticket_without_org = create(:ticket, :open)
       expect(Ticket.all_organization).not_to include(open_ticket_without_org)
-      closed_ticket_without_org = create(:ticket, :closed, :without_org)
       expect(Ticket.all_organization).not_to include(closed_ticket_without_org)
     end
   end
 
   describe '#closed_organization' do
-    it 'returns all open tickets where' do
-      closed_ticket_with_org = create(:ticket, :closed, :with_organization)
+    it 'returns all closed tickets with organization' do
       expect(Ticket.closed_organization).to include(closed_ticket_with_org)
-      open_ticket_with_org = create(:ticket, :open, :with_organization)
       expect(Ticket.closed_organization).not_to include(open_ticket_with_org)
-      open_ticket_without_org = create(:ticket, :open)
       expect(Ticket.closed_organization).not_to include(open_ticket_without_org)
-      closed_ticket_without_org = create(:ticket, :closed, :without_org)
       expect(Ticket.closed_organization).not_to include(closed_ticket_without_org)
     end
   end
-  #      scope :closed_organization, -> (organization_id) { where(organization_id: organization_id, closed: true) }
 
+  describe "#open?" do
+    it 'can determine a ticket is open' do
+        expect(open_ticket_with_org.open?).to be_truthy
+        expect(open_ticket_without_org.open?).to be_truthy
+    end
 
-
+    it 'can determine a ticket is not open' do
+      expect(closed_ticket_with_org.open?).to be_falsey
+      expect(closed_ticket_without_org.open?).to be_falsey
+    end
+  end
 end
 
 
