@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Region, type: :model do
 
     let(:region) { FactoryBot.build(:region) }
-
+    
     describe "#to_s" do
         it 'has a string representation that is the name' do
             expected = 'FAKE'
@@ -30,10 +30,14 @@ RSpec.describe Region, type: :model do
         end
     end
 
-    describe '#unspecified' do
-        it 'returns all unspecified regions' do
-          unspecified_region = create(:region, :unspecified)
-          expect(region.self.unspecified).to eq("Unspecified")
+    describe "::unspecified" do
+        it "creates a new Unspecifeid region when one does not exist" do
+          expect(Region.where(name: 'Unspecified')).to be_empty
+          expect{ Region.unspecified }.to change { Region.count }
+        end
+        it "does no create a new Unspecified region when one exists" do
+          create(:unspecified_region)
+          expect{ Region.unspecified }.to_not change { Region.count }
         end
     end
 

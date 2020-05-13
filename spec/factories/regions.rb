@@ -3,8 +3,10 @@ FactoryBot.define do
 		sequence :name do |n|
 			"Name#{n}"
 		end
-		trait :unspecified do
-			name { 'Unspecified'}
-		end
+	end
+
+	factory :unspecified_region, class: 'Region' do
+		name { 'Unspecified'}
 	end	
+	
 end
