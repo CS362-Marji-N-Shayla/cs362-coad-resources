@@ -5,6 +5,9 @@ FactoryBot.define do
 		end
 		active { 'true' }
 	end	
+    trait :inactive do
+    	active { 'false' }
+	end
 
 	factory :unspecified_resource_category, class: 'ResourceCategory' do
 		name { 'Unspecified' }

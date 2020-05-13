@@ -73,4 +73,37 @@ RSpec.describe ResourceCategory, type: :model do
       end
     end
 
+    describe "::unspecified" do
+        it "creates a new Unspecifeid resource category when one does not exist" do
+          expect(ResourceCategory.where(name: 'Unspecified')).to be_empty
+          expect{ ResourceCategory.unspecified }.to change { ResourceCategory.count }
+        end
+        it "does no create a new Unspecified resource category when one exists" do
+          create(:unspecified_resource_category)
+          expect{ ResourceCategory.unspecified }.to_not change { ResourceCategory.count }
+        end
+    end
+
+    describe "#activate" do
+      it "updates active status to true" do
+        inactive_resource_cat = create(:resource_category, :inactive)
+        expect{ inactive_resource_cat.activate }.to change { inactive_resource_cat.active }
+      end
+      it "doesn't update active status if already true" do
+        active_resource_cat = create(:resource_category)
+        expect{ active_resource_cat.activate }.to_not change { active_resource_cat.active }
+      end
+    end
+
+    describe "#deactivate" do
+      it "updates active status to false" do
+        active_resource_cat = create(:resource_category)
+        expect{ active_resource_cat.deactivate }.to change { active_resource_cat.active }
+      end
+      it "doesn't update active status if already false" do
+        inactive_resource_cat = create(:resource_category, :inactive)
+        expect{ inactive_resource_cat.deactivate }.to_not change { inactive_resource_cat.active }
+      end
+    end
+
 end
