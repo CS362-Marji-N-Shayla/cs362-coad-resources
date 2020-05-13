@@ -106,4 +106,26 @@ RSpec.describe Organization, type: :model do
       end
     end
 
+    describe "#approve" do
+      it "updates status to approved" do
+        submitted = create(:organization)
+        expect{ submitted.approve }.to change { submitted.status }
+      end
+      it "doesn't update status if already approved" do
+        approved = create(:organization, :approved)
+        expect{ approved.approve }.to_not change { approved.status }
+      end
+    end
+
+    describe "#reject" do
+      it "updates status to rejected" do
+        submitted = create(:organization)
+        expect{ submitted.reject }.to change { submitted.status }
+      end
+      it "doesn't update status if already rejected" do
+        rejected = create(:organization, :rejected)
+        expect{ rejected.reject }.to_not change { rejected.status }
+      end
+    end
+
 end
