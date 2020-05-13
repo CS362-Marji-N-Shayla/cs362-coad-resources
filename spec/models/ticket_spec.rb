@@ -98,13 +98,22 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
-  # describe '#organization' do
-  #   it 'is organization scope' do
-  #     ticket.closed = false
-  #     ticket.organization = organization.organization_id
-  #     expect(ticket).to be_all_organization
-  #   end
-  # end
+  describe '#closed_organization' do
+    it 'returns all open tickets where' do
+      closed_ticket_with_org = create(:ticket, :closed, :with_organization)
+      expect(Ticket.closed_organization).to include(closed_ticket_with_org)
+      open_ticket_with_org = create(:ticket, :open, :with_organization)
+      expect(Ticket.closed_organization).not_to include(open_ticket_with_org)
+      open_ticket_without_org = create(:ticket, :open)
+      expect(Ticket.closed_organization).not_to include(open_ticket_without_org)
+      closed_ticket_without_org = create(:ticket, :closed, :without_org)
+      expect(Ticket.closed_organization).not_to include(closed_ticket_without_org)
+    end
+  end
+  #      scope :closed_organization, -> (organization_id) { where(organization_id: organization_id, closed: true) }
+
+
+
 end
 
 
