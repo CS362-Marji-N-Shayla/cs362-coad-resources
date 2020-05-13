@@ -4,7 +4,7 @@ RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
   let(:region) { FactoryBot.create(:region)}
   let(:resource_category) { FactoryBot.create(:resource_category)}
-  let(:organization) { FactoryBot.build(:organization) }
+  let(:organization) { FactoryBot.create(:organization) }
 
 
   it 'has a string representation that is the name' do
@@ -106,6 +106,7 @@ RSpec.describe Ticket, type: :model do
   #   end
   # end
 
+=======
 end
 
 
