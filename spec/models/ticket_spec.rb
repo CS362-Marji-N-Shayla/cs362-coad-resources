@@ -105,8 +105,6 @@ RSpec.describe Ticket, type: :model do
   #     expect(ticket).to be_all_organization
   #   end
   # end
-
-=======
 end
 
 

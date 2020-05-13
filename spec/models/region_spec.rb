@@ -30,6 +30,12 @@ RSpec.describe Region, type: :model do
         end
     end
 
+    describe '#unspecified' do
+        it 'returns all unspecified regions' do
+          unspecified_region = create(:region, :unspecified)
+          expect(region.self.unspecified).to eq("Unspecified")
+        end
+    end
 
 end
 
