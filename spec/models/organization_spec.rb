@@ -3,6 +3,20 @@ require 'rails_helper'
 RSpec.describe Organization, type: :model do
 	let(:organization) { Organization.new }
 
+  describe 'relationships' do  
+    it 'has many users' do
+      expect(organization).to have_many(:users)
+    end
+    it 'has many tickets' do
+      expect(organization).to have_many(:tickets)
+    end
+    it "has and belongs to many resource categories" do
+      expect(organization).to have_and_belong_to_many(:resource_categories)
+    end
+    
+
+  end   
+
   describe "validations" do
     it "validates email" do
         expect(organization).to validate_presence_of(:email)
