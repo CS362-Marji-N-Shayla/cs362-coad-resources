@@ -19,6 +19,12 @@ RSpec.describe RegionsController, type: :controller do
 				expect(get(:new)).to redirect_to(new_user_session_path)
 			end
 		end
+		describe 'GET #edit' do
+			region = create(:region)
+			it "redirects to the sign in page" do
+				expect(get(:edit, parameters: { id: region.id })).to redirect_to(new_user_session_path)
+			end
+		end
 	end
 
 	# context 'As an organization user' do
