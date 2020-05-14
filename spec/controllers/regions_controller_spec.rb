@@ -6,14 +6,17 @@ RSpec.describe RegionsController, type: :controller do
 		describe 'GET #index' do
 			specify { expect(get(:index)).to redirect_to(new_user_session_path) }
 		end
-		# describe 'POST #create' do
-		# 	it "it creates a region" do
-		# 		specify { expect(post(:create)).to be_successful }
-		# 	end
-		# end
+		describe 'POST #create' do
+			specify { expect(post(:create)).to redirect_to(new_user_session_path) }
+		end
 		describe 'GET #show' do
 			it "redirects to the sign in page" do
 				expect(get(:show, params: { id: 'FAKE' })).to redirect_to(new_user_session_path)
+			end
+		end
+		describe 'GET #new' do
+			it "redirects to the sign in page" do
+				expect(get(:new)).to redirect_to(new_user_session_path)
 			end
 		end
 	end
