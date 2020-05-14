@@ -102,14 +102,14 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
-  # describe '#closed_organization' do
-  #   it 'returns all closed tickets with organization' do
-  #     expect(Ticket.closed_organization).to include(closed_ticket_with_org)
-  #     expect(Ticket.closed_organization).not_to include(open_ticket_with_org)
-  #     expect(Ticket.closed_organization).not_to include(open_ticket_without_org)
-  #     expect(Ticket.closed_organization).not_to include(closed_ticket_without_org)
-  #   end
-  # end
+  #Ticket.closed_organization(?)
+  describe '#closed_organization' do
+    it 'returns all closed tickets with organization' do
+      expect(Ticket.closed_organization(closed_ticket_with_org.organization_id)).to include(closed_ticket_with_org)
+      expect(Ticket.closed_organization(open_ticket_with_org.organization_id)).not_to include(open_ticket_with_org)
+      expect(Ticket.closed_organization(open_ticket_without_org.organization_id)).not_to include(open_ticket_without_org)
+    end
+  end
 
   describe '#open?' do
     it 'can determine a ticket is open' do
