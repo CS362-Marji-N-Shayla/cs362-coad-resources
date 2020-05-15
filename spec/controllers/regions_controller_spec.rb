@@ -33,12 +33,11 @@ RSpec.describe RegionsController, type: :controller do
 			specify { expect(get(:index)).to redirect_to(dashboard_path) }
 		end
 
-	# 	describe 'GET #show' do
-	# 		region = create(:region)
-	# 		it "redirects to the sign in page" do
-	# 			expect(get(:show, parameters: { id: 'FAKE' })).to redirect_to(dashboard_path)
-	# 		end
-	# 	end
+		describe 'GET #show' do
+			it "redirects to the sign in page" do
+				expect(get(:show, params: { id: 'FAKE' })).to redirect_to(dashboard_path)
+			end
+		end
 
 	end
 
