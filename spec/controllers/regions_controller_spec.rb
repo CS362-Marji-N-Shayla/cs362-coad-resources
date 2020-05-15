@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RegionsController, type: :controller do
-	let(:region) { FactoryBot.build(:region) }
+	# let(:region) { FactoryBot.build(:region) }
 	context 'As a non-logged in user' do
 		describe 'GET #index' do
 			specify { expect(get(:index)).to redirect_to(new_user_session_path) }
@@ -66,29 +66,28 @@ RSpec.describe RegionsController, type: :controller do
 		end
 
 		# describe 'GET #edit' do
-		# 	region = create(:region)
 		# 	it "redirects to the sign in page" do
-		# 		expect(get(:edit, parameters: { id: region.id })).to be_successful
+		# 		expect(get(:edit, params: { id: region.id })).to be_successful
 		# 	end
 		# end
 
 		# describe 'POST #create' do
+		# 	region = create(:region)
 		# 	it "it creates a region" do
-		# 		specify { expect(post(:create, parameteres: {region: attributes_for(:region))).to redirect_to(regions_path) }
+		# 		specify { expect(post(:create, params: {region: attributes_for(:region))).to redirect_to(regions_path) }
 		# 	end
 		# end
 
 		# describe 'DELETE #destroy' do
-		# 	region = create(:region)
-		# 	it "it creates a region" do
+		# 	it "destroys a region" do
 		# 		specify { expect(delete(:destroy)).to redirect_to(regions_path) }
 		# 	end
 		# end
 
 		# describe 'PUT #update' do
-		# 	region = create(:region)
+		# 	# region = create(:region)
 		# 	it "it creates a region" do
-		# 		specify { expect(put(:update, parameters: { id: region.id, region: attributes_for (region) })).to redirect_to(region_path(region)) }
+		# 		specify { expect(put(:update, params: { id: region.id, region: attributes_for (region) })).to redirect_to(region_path(region)) }
 		# 	end
 		# end
 
