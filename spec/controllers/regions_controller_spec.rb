@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RegionsController, type: :controller do
-	# let(:region) { FactoryBot.build(:region) }
+	let(:region) { FactoryBot.build(:region) }
 	context 'As a non-logged in user' do
 		describe 'GET #index' do
 			specify { expect(get(:index)).to redirect_to(new_user_session_path) }
@@ -54,17 +54,16 @@ RSpec.describe RegionsController, type: :controller do
 		end
 
 		# describe 'GET #show' do
-		# 	retion = create(:region)
 		# 	it "redirects to the sign in page" do
-		# 		expect(get(:show, parameters: { id: region.id })).to be_successful
+		# 		expect(get(:show, params: { id: region.id })).to be_successful
 		# 	end
 		# end
 
-		# describe 'GET #new' do
-		# 	it "redirects to the sign in page" do
-		# 		expect(get(:new)).to be_successful
-		# 	end
-		# end
+		describe 'GET #new' do
+			it "redirects to the sign in page" do
+				expect(get(:new)).to be_successful
+			end
+		end
 
 		# describe 'GET #edit' do
 		# 	region = create(:region)
