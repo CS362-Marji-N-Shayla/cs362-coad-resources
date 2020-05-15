@@ -41,17 +41,17 @@ RSpec.describe RegionsController, type: :controller do
 
 	end
 
-	# context 'As an admin' do
-		# let(:admin_user) { create(:user, :admin) }
-		# before(:each){ sign_in(admin_user) }
+	context 'As an admin' do
+		let(:admin_user) { create(:user, :admin) }
+		before(:each){ sign_in(admin_user) }
 
 		# before do
 		# 	sign_in(admin)
 		# end
 
-		# describe 'GET #index' do
-		# 	specify { expect(get(:index)).to be_successful }
-		# end
+		describe 'GET #index' do
+			specify { expect(get(:index)).to be_successful }
+		end
 
 		# describe 'GET #show' do
 		# 	retion = create(:region)
@@ -93,5 +93,5 @@ RSpec.describe RegionsController, type: :controller do
 		# 	end
 		# end
 
-	# end
+	end
 end
