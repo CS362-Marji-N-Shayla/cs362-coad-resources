@@ -19,21 +19,19 @@ RSpec.describe RegionsController, type: :controller do
 				expect(get(:new)).to redirect_to(new_user_session_path)
 			end
 		end
-		describe 'GET #edit' do
-			region = create(:region)
-			it "redirects to the sign in page" do
-				expect(get(:edit, parameters: { id: region.id })).to redirect_to(new_user_session_path)
-			end
-		end
+		specify 'GET #edit' do
+        	region = create(:region)
+        	expect(get(:edit, params: {id: region.id})).to redirect_to(new_user_session_path)
+    	end
 	end
 
-	# context 'As an organization user' do
-	# 	let(:user) { create(:user) }
-	# 	before(:each){ sign_in(user) }
+	context 'As an organization user' do
+		let(:user) { create(:user) }
+		before(:each){ sign_in(user) }
 
-	# 	describe 'GET #index' do
-	# 		specify { expect(get(:index)).to redirect_to(dashboard_path) }
-	# 	end
+		describe 'GET #index' do
+			specify { expect(get(:index)).to redirect_to(dashboard_path) }
+		end
 
 	# 	describe 'GET #show' do
 	# 		region = create(:region)
@@ -42,7 +40,7 @@ RSpec.describe RegionsController, type: :controller do
 	# 		end
 	# 	end
 
-	# end
+	end
 
 	# context 'As an admin' do
 		# let(:admin_user) { create(:user, :admin) }
