@@ -2,20 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
   let(:ticket) { FactoryBot.build(:ticket) }
-  let(:open_ticket_with_org) { create(:ticket, :open, :with_organization) }
-  let(:closed_ticket_with_org) { create(:ticket, :closed, :with_organization) }
-  let(:open_ticket_without_org) { create(:ticket, :open, :without_org) }
-  let(:closed_ticket_without_org) {create(:ticket, :closed, :without_org)}
+  let(:open_ticket_with_org) { FactoryBot.create(:ticket, :open, :with_organization) }
+  let(:closed_ticket_with_org) { FactoryBot.create(:ticket, :closed, :with_organization) }
+  let(:open_ticket_without_org) { FactoryBot.create(:ticket, :open, :without_org) }
+  let(:closed_ticket_without_org) { FactoryBot.create(:ticket, :closed, :without_org) }
 
-  let(:region) { FactoryBot.create(:region)}
-  let(:resource_category) { FactoryBot.create(:resource_category)}
+  let(:region) { FactoryBot.create(:region) }
+  let(:resource_category) { FactoryBot.create(:resource_category) }
   let(:organization) { FactoryBot.create(:organization) }
 
 
   it 'has a string representation that is the name' do
-      # ticket_name = Ticket.new(name: 'FAKE')
-      expect(ticket.to_s).to eq("Ticket #{ticket.id}"
-      )
+      expect(ticket.to_s).to eq("Ticket #{ ticket.id }")
   end
 
   describe 'relationships' do  
