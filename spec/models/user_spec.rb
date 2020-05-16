@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-	let(:user) { User.new }
+  let(:user) { FactoryBot.build(:user) }
 
 	it 'has a string representation that is the email' do
 		user_string = User.new(email: 'FAKE')
