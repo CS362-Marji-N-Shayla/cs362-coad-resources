@@ -4,8 +4,7 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryBot.build(:user) }
 
 	it 'has a string representation that is the email' do
-		user_string = User.new(email: 'FAKE')
-		expect(user_string.to_s).to eq('FAKE')
+		expect(user.to_s).to eq("#{user.email}")
 	end
 
 

@@ -7,17 +7,14 @@ RSpec.describe Ticket, type: :model do
   let(:open_ticket_without_org) { create(:ticket, :open, :without_org) }
   let(:closed_ticket_without_org) {create(:ticket, :closed, :without_org)}
 
-
-
-
   let(:region) { FactoryBot.create(:region)}
   let(:resource_category) { FactoryBot.create(:resource_category)}
   let(:organization) { FactoryBot.create(:organization) }
 
 
   it 'has a string representation that is the name' do
-      ticket_name = Ticket.new(name: 'FAKE')
-      expect(ticket_name.to_s).to eq("Ticket #{ticket.id}"
+      # ticket_name = Ticket.new(name: 'FAKE')
+      expect(ticket.to_s).to eq("Ticket #{ticket.id}"
       )
   end
 
