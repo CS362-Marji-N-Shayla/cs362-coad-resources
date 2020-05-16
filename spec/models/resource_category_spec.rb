@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
-    let(:resource_category) { ResourceCategory.new }
+    let(:resource_category) { FactoryBot.build(:resource_category) }
+    let(:inactive_resource_category) { FactoryBot.create(:resource_category, :inactive) }
+    let(:active_resource_category) { FactoryBot.create(:resource_category, :active) }
+
 
     it 'has a string representation that is the name' do
-        expected_name = 'FAKE'
-        resource_cat = ResourceCategory.new(name: 'FAKE')
-        expect(resource_cat.to_s).to eq(expected_name)
+        expect(resource_category.to_s).to eq("#{ resource_category.name }")
     end
 
     describe "relationships" do
@@ -42,9 +43,6 @@ RSpec.describe ResourceCategory, type: :model do
 
     describe "#active" do
       it "active resource_categories" do
-        active_resource_category = ResourceCategory.create(active: true, name: 'FAKEACTIVE')
-        inactive_resource_category = ResourceCategory.create(active: false, name: 'FAKEINACTIVE')
-
         active_resource_categories = ResourceCategory.active
         expect(active_resource_categories).to include(active_resource_category)
         expect(active_resource_categories).not_to include(inactive_resource_category)
@@ -53,10 +51,7 @@ RSpec.describe ResourceCategory, type: :model do
 
     describe "#inactive" do
       it "inactive resource_categories" do
-        active_resource_category = ResourceCategory.create(active: true, name: 'FAKEACTIVE')
-        inactive_resource_category = ResourceCategory.create(active: false, name: 'FAKEINACTIVE')
-
-        inactive_resource_categories = ResourceCategory.inactive
+         inactive_resource_categories = ResourceCategory.inactive
         expect(inactive_resource_categories).to include(inactive_resource_category)
         expect(inactive_resource_categories).not_to include(active_resource_category)
       end
@@ -64,12 +59,10 @@ RSpec.describe ResourceCategory, type: :model do
 
     describe "#inactive?" do
       it 'can determine a resource category is inactive' do
-          inactive_resource_cat = ResourceCategory.new(active: false, name: 'FAKE')
-          expect(inactive_resource_cat.inactive?).to be_truthy
+          expect(inactive_resource_category.inactive?).to be_truthy
       end
       it 'can determine a resource category is not inactive' do
-          active_resource_cat = ResourceCategory.new(active: true, name: 'FAKE')
-          expect(active_resource_cat.inactive?).to be_falsey
+          expect(active_resource_category.inactive?).to be_falsey
       end
     end
 
@@ -86,23 +79,19 @@ RSpec.describe ResourceCategory, type: :model do
 
     describe "#activate" do
       it "updates active status to true" do
-        inactive_resource_cat = create(:resource_category, :inactive)
-        expect{ inactive_resource_cat.activate }.to change { inactive_resource_cat.active }
+        expect{ inactive_resource_category.activate }.to change { inactive_resource_category.active }
       end
       it "doesn't update active status if already true" do
-        active_resource_cat = create(:resource_category)
-        expect{ active_resource_cat.activate }.to_not change { active_resource_cat.active }
+        expect{ active_resource_category.activate }.to_not change { active_resource_category.active }
       end
     end
 
     describe "#deactivate" do
       it "updates active status to false" do
-        active_resource_cat = create(:resource_category)
-        expect{ active_resource_cat.deactivate }.to change { active_resource_cat.active }
+        expect{ active_resource_category.deactivate }.to change { active_resource_category.active }
       end
       it "doesn't update active status if already false" do
-        inactive_resource_cat = create(:resource_category, :inactive)
-        expect{ inactive_resource_cat.deactivate }.to_not change { inactive_resource_cat.active }
+        expect{ inactive_resource_category.deactivate }.to_not change { inactive_resource_category.active }
       end
     end
 
