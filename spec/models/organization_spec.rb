@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Organization, type: :model do
-	let(:organization) { Organization.new }
+	let(:organization) { FactoryBot.build(:organization) }
 
   describe "relationships" do  
     it "has many users" do
@@ -100,30 +100,26 @@ RSpec.describe Organization, type: :model do
 
     describe "#to_s" do
       it 'has a string representation that is the name' do
-          expected = 'FAKE'
-          organization.name = expected
-          expect(organization.to_s).to eq('FAKE')
+          expect(organization.to_s).to eq("#{ organization.name }")
       end
     end
 
     describe "#approve" do
       it "updates status to approved" do
-        submitted = create(:organization)
-        expect{ submitted.approve }.to change { submitted.status }
+        expect{ organization.approve }.to change { organization.status }
       end
       it "doesn't update status if already approved" do
-        approved = create(:organization, :approved)
+        approved = build(:organization, :approved)
         expect{ approved.approve }.to_not change { approved.status }
       end
     end
 
     describe "#reject" do
       it "updates status to rejected" do
-        submitted = create(:organization)
-        expect{ submitted.reject }.to change { submitted.status }
+        expect{ organization.reject }.to change { organization.status }
       end
       it "doesn't update status if already rejected" do
-        rejected = create(:organization, :rejected)
+        rejected = build(:organization, :rejected)
         expect{ rejected.reject }.to_not change { rejected.status }
       end
     end
