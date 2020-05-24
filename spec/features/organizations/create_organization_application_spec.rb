@@ -5,6 +5,7 @@ RSpec.describe 'Creating an Organization Application', type: :feature do
 	before(:each) do
 		user = FactoryBot.create(:user)
 		log_in_as(user)
+		allow(UserMailer).to receive(:with).and_return(FakeMailer.new)
 	end
 
 	it 'displays a success message' do
