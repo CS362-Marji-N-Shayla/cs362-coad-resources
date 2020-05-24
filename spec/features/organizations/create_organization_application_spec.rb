@@ -8,7 +8,7 @@ RSpec.describe 'Creating an Organization Application', type: :feature do
 		allow(UserMailer).to receive(:with).and_return(FakeMailer.new)
 	end
 
-	it 'displays a success message' do
+	it 'displays a success message when form is filled out correctly' do
 		visit new_organization_path
 		choose 'organization_liability_insurance_true'
 		choose 'organization_agreement_one_true'
@@ -29,6 +29,28 @@ RSpec.describe 'Creating an Organization Application', type: :feature do
 		choose 'organization_transportation_yes'
 		click_on 'Apply'
 		expect(page).to have_content('Application Submitted')
+	end
+
+	it 'displays a prompt to fill out info when form is name' do
+		visit new_organization_path
+		choose 'organization_liability_insurance_true'
+		choose 'organization_agreement_one_true'
+		choose 'organization_agreement_two_true'
+		choose 'organization_agreement_three_true'
+		choose 'organization_agreement_four_true'
+		choose 'organization_agreement_five_true'
+		choose 'organization_agreement_six_true'
+		choose 'organization_agreement_seven_true'
+		choose 'organization_agreement_eight_true'
+		fill_in 'Organization Name', with: 'FakeOrg'
+		fill_in 'What is your direct phone number? Cell phone is best', with: '555-543-1234'
+		fill_in 'Who may we contact regarding your organization\'s application if we are unable to reach you?', with: "Fake Secondary"
+		fill_in 'What is a good secondary phone number we may reach your organization at', with: '541-123-3241'
+		fill_in 'organization_email', with: 'fake@fakeemail.com'
+		fill_in 'Description', with: 'Fake description'
+		choose 'organization_transportation_yes'
+		click_on 'Apply'
+		expect(page).to have_content('can\'t be blank')
 	end
 
 
