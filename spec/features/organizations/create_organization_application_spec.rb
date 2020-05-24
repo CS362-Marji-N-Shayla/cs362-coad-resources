@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Creating an Organization Application', type: :feature do
 
-	# before(:each) do
-	# 	user = FactoryBot.create(:user)
-	# 	log_in_as(user)
-	# end
+	before(:each) do
+		user = FactoryBot.create(:user)
+		log_in_as(user)
+	end
 
 	it 'displays a success message' do
 		visit new_organization_path

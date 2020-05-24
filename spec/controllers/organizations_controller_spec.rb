@@ -22,15 +22,9 @@ RSpec.describe OrganizationsController, type: :controller do
 				allow(UserMailer).to receive(:with).and_return(FakeMailer.new)
 				expect(
 					post(
-						:create,
+						:create, 
 						params: {
-							organization: {name: 'Fake',
-								email: 'fake@fake.com',
-								phone: '13036531234',
-								primary_name: 'Fake_primary',
-								secondary_name: 'Fake_secondary',
-								secondary_phone: '13036534332'
-							},
+							organization: attributes_for(:organization)
 						}
 					)
 				).to redirect_to(organization_application_submitted_path)
