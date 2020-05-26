@@ -13,7 +13,6 @@ RSpec.describe 'Deleting a Region', type: :feature do
     context 'as an admin' do
         it 'deletes a region' do
             visit region_path(@region)
-            byebug
             click_on 'Delete'
             expect(page).to have_content('Regions')
             expect(page).to have_content('was deleted')
