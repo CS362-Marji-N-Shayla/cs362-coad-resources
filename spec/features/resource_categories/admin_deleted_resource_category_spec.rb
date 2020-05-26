@@ -7,7 +7,8 @@ RSpec.describe 'Deleting a Resource Category', type: :feature do
     end
 
     it 'displays a success message' do
-        visit "/resource_categories/#{@resource_category.id}"
+        visit resource_category_path(@resource_category)
+        # visit "/resource_categories/#{@resource_category.id}"
         click_link 'Delete'
         expect(page).to have_content('Category Fake was deleted')
     end
