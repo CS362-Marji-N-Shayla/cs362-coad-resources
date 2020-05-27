@@ -4,9 +4,6 @@ RSpec.describe 'Deleting a Region', type: :feature do
     before :each do
         @region = FactoryBot.create(:region)
         @user = FactoryBot.create(:user, :admin)
-    end
-
-    before do
         log_in_as(@user)
     end
 
