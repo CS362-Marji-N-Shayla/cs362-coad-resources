@@ -11,7 +11,6 @@ RSpec.describe 'Creating a Region', type: :feature do
         it 'adds a region' do
             visit new_region_path
             fill_in 'Name', with: 'Fake Name'
-            byebug
             click_on 'Add Region'
             expect(page).to have_content('Regions')
             expect(page).to have_content('Fake Name')

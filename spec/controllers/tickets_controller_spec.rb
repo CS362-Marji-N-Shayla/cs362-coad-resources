@@ -10,6 +10,12 @@ RSpec.describe TicketsController, type: :controller do
 			end
 		end
 
+		describe 'POST #create' do
+			it "posts create successfully" do
+				expect(post(:create, params:{ticket: attributes_for(:ticket)})).to be_successful
+    	end
+    end
+
 	end
 
 	context 'As an organization user' do
@@ -22,6 +28,12 @@ RSpec.describe TicketsController, type: :controller do
 			end
 		end
 
+		describe 'POST #create' do
+			it "posts create successfully" do
+				expect(post(:create, params:{ticket: attributes_for(:ticket)})).to be_successful
+    	end
+    end
+
 	end
 
 	context 'As an admin' do
@@ -33,6 +45,12 @@ RSpec.describe TicketsController, type: :controller do
 				expect(get(:new)).to be_successful
 			end
 		end
+
+		describe 'POST #create' do
+			it "posts create successfully" do
+				expect(post(:create, params:{ticket: attributes_for(:ticket)})).to be_successful
+    	end
+    end
 
 	end
 end
