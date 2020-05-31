@@ -7,11 +7,12 @@ RSpec.describe 'Closing a ticket', type: :feature do
         log_in_as(@user)
     end
 
-    it 'displays a success message' do
+    it "displays a success message" do
         visit ticket_path(@ticket)
         click_link 'Close'
-        expect(page).to have_content('Ticket')
-        expect(page).to have_content('was closed')
+        visit dashboard_url
+        select 'Closed', from: 'status'
+        expect(page).to have_content(@ticket.name)
     end
 
 end
