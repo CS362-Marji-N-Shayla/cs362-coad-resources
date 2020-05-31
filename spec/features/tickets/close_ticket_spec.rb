@@ -10,6 +10,7 @@ RSpec.describe 'Closing a ticket', type: :feature do
     it 'displays a success message' do
         visit ticket_path(@ticket)
         click_link 'Close'
+        byebug
         expect(page).to have_content('Ticket')
         expect(page).to have_content('was closed')
     end
