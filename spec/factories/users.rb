@@ -8,6 +8,9 @@ FactoryBot.define do
 		trait :admin do
 			role { 'admin' }
 		end
+		trait :has_org do
+			organization
+		end
 
 		after :create do |user|
 			user.confirm
