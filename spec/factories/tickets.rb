@@ -14,12 +14,16 @@ FactoryBot.define do
         trait :with_organization do
             organization
         end
+
+        trait :captured do
+            organization
+            closed { false }
+        end
+
         trait :without_org do
             organization_id{ nil }
         end
-        trait :captured
-            captured { true }
-        end
+
         region
         resource_category
 	end	
