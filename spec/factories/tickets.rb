@@ -17,6 +17,9 @@ FactoryBot.define do
         trait :without_org do
             organization_id{ nil }
         end
+        trait :captured
+            captured { true }
+        end
         region
         resource_category
 	end	
