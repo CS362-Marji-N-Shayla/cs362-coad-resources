@@ -9,7 +9,9 @@ RSpec.describe 'User registration', type: :feature do
 		fill_in 'Password confirmation', with: 'FAKEPASSWORD'
 		# check 'I\'m not a robot'
 		click_button 'Sign up'
-		click_on 'Confirm my account'
+		# click_on 'Confirm my account'
+		user = User.find_by(email: 'fake99@fake.com')
+		visit user_confirmation_path(confirmation_token: user.confirmation_token)
 		expect(page).to have_content('successfully confirmed')
 	end
 
