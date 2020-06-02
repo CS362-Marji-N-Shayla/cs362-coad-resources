@@ -9,7 +9,6 @@ RSpec.describe 'Releasing a ticket by an', type: :feature do
 	#release ticket from dashboard
     it 'releases a ticket' do
         visit ticket_path(@captured_ticket)
-        byebug
         click_link 'Release'
         visit dashboard_url
         select 'Released', from: 'status'

@@ -2,16 +2,17 @@ require 'rails_helper'
 
 RSpec.describe 'Capturing a ticket', type: :feature do
 	before :each do
+        organization = FactoryBot.create(:organization, :approved)
+        @user = FactoryBot.create(:user, organization: organization)
         @ticket = FactoryBot.create(:ticket)
-        @user = FactoryBot.create(:user, :has_org)
         log_in_as(@user)
     end
 
-	it "displays a success message" do
-      visit dashboard_url
-      byebug
-      click_on 'Tickets'
-      click_on @ticket.name
-      expect(page).to have_content('Ticket Submitted')
+	it "takes user to dashboard after capturing a ticket" do
+      visit ticket_path(@ticket.id)
+      click_on 'Capture'
+      # click_on @ticket.name
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content(@ticket.name)
     end
 end
